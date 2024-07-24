@@ -1,19 +1,14 @@
 package main
 
 import (
-	"fmt"
-	"log"
+	// "fmt"
+	// "log"
 
-	"github.com/Mafaz03/Pokedex/internal/pokeapi"
+	// "github.com/Mafaz03/Pokedex/internal/pokeapi"
 )
 
 func main() {
-	// repl()
-	client := pokeapi.NewClient()
-	resp, err := client.ListLocationArea()
-	if err != nil {
-		log.Fatal(err)
-	}
-	fmt.Println(resp)
+	repl()
+	
 
 }

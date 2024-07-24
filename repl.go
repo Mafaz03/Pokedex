@@ -45,6 +45,11 @@ func getCommands() map[string]commandsStruct {
 			description: "Gets quick walkthrough the commands",
 			callback:    Command_Help,
 		},
+		"map": {
+			name:        "map",
+			description: "Does a http request",
+			callback:    Command_Map,
+		},
 	}
 }
 
