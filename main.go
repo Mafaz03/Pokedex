@@ -1,14 +1,22 @@
 package main
 
-import (
-	// "fmt"
-	// "log"
+import "github.com/Mafaz03/Pokedex/internal/pokeapi"
 
-	// "github.com/Mafaz03/Pokedex/internal/pokeapi"
-)
+// "fmt"
+// "log"
+
+
+
+type config struct {
+	pokeapi pokeapi.Client
+	prevURL *string
+	nextURL *string
+}
 
 func main() {
-	repl()
-	
+	cfg := config{
+		pokeapi: pokeapi.NewClient(),
+	}
+	repl(&cfg)
 
 }

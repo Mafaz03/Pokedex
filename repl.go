@@ -7,7 +7,7 @@ import (
 	"strings"
 )
 
-func repl() {
+func repl(cfg *config) {
 	for {
 		scanner := bufio.NewScanner(os.Stdin)
 		fmt.Print("> ")
@@ -23,14 +23,17 @@ func repl() {
 			fmt.Println("Invalid Command")
 			continue
 		}
-		cmd.callback()
+		err := cmd.callback(cfg)
+		if err != nil {
+			fmt.Println(err)
+		}
 	}
 }
 
 type commandsStruct struct {
 	name        string
 	description string
-	callback    func() error
+	callback    func(*config) error
 }
 
 func getCommands() map[string]commandsStruct {
@@ -47,8 +50,13 @@ func getCommands() map[string]commandsStruct {
 		},
 		"map": {
 			name:        "map",
-			description: "Does a http request",
+			description: "Does a http request for next page",
 			callback:    Command_Map,
+		},
+		"mapb": {
+			name:        "mapb",
+			description: "Does a http request for previous page",
+			callback:    Command_Mapb,
 		},
 	}
 }
