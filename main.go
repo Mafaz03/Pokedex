@@ -1,6 +1,10 @@
 package main
 
-import "github.com/Mafaz03/Pokedex/internal/pokeapi"
+import (
+	"time"
+
+	"github.com/Mafaz03/Pokedex/internal/pokeapi"
+)
 
 // "fmt"
 // "log"
@@ -15,7 +19,7 @@ type config struct {
 
 func main() {
 	cfg := config{
-		pokeapi: pokeapi.NewClient(),
+		pokeapi: pokeapi.NewClient(time.Hour),
 	}
 	repl(&cfg)
 
