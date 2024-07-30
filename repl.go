@@ -17,13 +17,18 @@ func repl(cfg *config) {
 			continue
 		}
 		command := cleaned[0]
+		args := []string{}
+		if len(cleaned) > 1 {
+			args = cleaned[1:]
+		}
 		commands := getCommands()
 		cmd, ok := commands[command]
+	
 		if !ok {
 			fmt.Println("Invalid Command")
 			continue
 		}
-		err := cmd.callback(cfg)
+		err := cmd.callback(cfg, args...)
 		if err != nil {
 			fmt.Println(err)
 		}
@@ -33,7 +38,7 @@ func repl(cfg *config) {
 type commandsStruct struct {
 	name        string
 	description string
-	callback    func(*config) error
+	callback    func(*config, ...string) error
 }
 
 func getCommands() map[string]commandsStruct {
@@ -52,6 +57,11 @@ func getCommands() map[string]commandsStruct {
 			name:        "map",
 			description: "Does a http request for next page",
 			callback:    Command_Map,
+		},
+		"explore": {
+			name:        "explore",
+			description: "Explore all the pokemons in a area",
+			callback:    Command_Explore,
 		},
 		"mapb": {
 			name:        "mapb",
