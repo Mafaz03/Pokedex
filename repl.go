@@ -68,6 +68,11 @@ func getCommands() map[string]commandsStruct {
 			description: "Does a http request for previous page",
 			callback:    Command_Mapb,
 		},
+		"catch": {
+			name:        "catch",
+			description: "Attempts to catch a pokemon",
+			callback:    Command_Catch,
+		},
 	}
 }
 
